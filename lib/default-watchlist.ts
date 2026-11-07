@@ -36,6 +36,6 @@ export const defaultWatchlist = [
   {symbol:'EDV',name:'Vanguard Extended Duration Treasury ETF',type:'ETF'},
   {symbol:'TLT',name:'iShares 20+ Year Treasury Bond ETF',type:'ETF'},
   {symbol:'USO',name:'United States Oil Fund',type:'ETF'},
-  {symbol:'SPCX',name:'The SPAC and New Issue ETF',type:'ETF'},
+  {symbol:'SPCX',name:'Space Exploration Technologies Corp.',type:'EQUITY'},
   {symbol:'ICOP',name:'iShares Copper and Metals Mining ETF',type:'ETF'},
 ];

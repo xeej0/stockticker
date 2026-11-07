@@ -157,3 +157,5 @@ th.spark-col{width:76px}
 .toast.alert-toast button{font-size:16px;line-height:1}
 @media(max-width:640px){.stock-title{gap:10px}.stock-title .stock-badge{width:36px!important;height:36px!important}}
 .watch-panel thead th:nth-child(3){padding-right:12px}.watch-panel thead th:nth-child(4){padding-right:6px}
+.stock-logo{padding:2px}.stock-logo.loading img{opacity:0}
+.stock-logo.on-dark,[data-theme=dark] .stock-logo.on-dark{background:#222c27;border-color:#222c27}
