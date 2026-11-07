@@ -18,11 +18,14 @@ export async function GET(req:Request) {
  if(range!=='1d'&&m.previousClose==null&&m.regularMarketChangePercent==null){const daily=await fetch(`https://${host}.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=5m`,{headers:{'User-Agent':'Mozilla/5.0','Accept':'application/json'},signal:AbortSignal.timeout(10000)});if(!daily.ok)continue;const day:any=await daily.json();if(!day.chart?.result?.[0]?.meta)continue;m={...m,...day.chart.result[0].meta}}
  const q=result.indicators?.quote?.[0], points=(result.timestamp||[]).map((t:number,i:number)=>({time:t,value:q?.close?.[i]})).filter((p:{value:number})=>Number.isFinite(p.value));
  // Keep the regular-session price and change together; extended-hours values differ.
- const dayChange=m.regularMarketChange,dayPercent=m.regularMarketChangePercent;
- const previous=m.previousClose??(dayChange!=null?m.regularMarketPrice-dayChange:dayPercent!=null?m.regularMarketPrice/(1+dayPercent/100):m.chartPreviousClose);
- const change=dayChange??(m.regularMarketPrice-previous);
+ // Crypto often reports a percent but no absolute change, with a stale previousClose:
+ // derive all three from the same source so the sign and size always agree.
+ const finite=(v:unknown):v is number=>typeof v==='number'&&Number.isFinite(v);
+ const price=m.regularMarketPrice,dayChange=finite(m.regularMarketChange)?m.regularMarketChange:undefined,dayPercent=finite(m.regularMarketChangePercent)?m.regularMarketChangePercent:undefined;
+ const previous=dayChange!==undefined?price-dayChange:dayPercent!==undefined?price/(1+dayPercent/100):(m.previousClose??m.chartPreviousClose);
+ const change=dayChange??(price-previous);
  const now=Date.now()/1000, session=m.currentTradingPeriod?.regular;
- const data={symbol:m.symbol,name:m.longName||m.shortName||symbol,currency:m.currency||'USD',exchange:m.fullExchangeName||m.exchangeName,type:m.instrumentType,price:m.regularMarketPrice,change,percent:dayPercent??(change/previous*100),previous,high:m.regularMarketDayHigh,low:m.regularMarketDayLow,yearHigh:m.fiftyTwoWeekHigh,yearLow:m.fiftyTwoWeekLow,volume:m.regularMarketVolume,asOf:m.regularMarketTime,marketOpen:session?now>=session.start&&now<session.end:false,timezone:m.exchangeTimezoneName,points,range,source:'Yahoo Finance'};
+ const data={symbol:m.symbol,name:m.longName||m.shortName||symbol,currency:m.currency||'USD',exchange:m.fullExchangeName||m.exchangeName,type:m.instrumentType,price:m.regularMarketPrice,change,percent:dayPercent??(previous?change/previous*100:0),previous,high:m.regularMarketDayHigh,low:m.regularMarketDayLow,yearHigh:m.fiftyTwoWeekHigh,yearLow:m.fiftyTwoWeekLow,volume:m.regularMarketVolume,asOf:m.regularMarketTime,marketOpen:session?now>=session.start&&now<session.end:false,timezone:m.exchangeTimezoneName,points,range,source:'Yahoo Finance'};
  return data;
  } catch (e) { console.warn('Quote fetch failed',host,e instanceof Error?e.message:'network error'); }
  }

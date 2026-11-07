@@ -8,3 +8,6 @@ export const compact=(value?:number|null)=>finite(value)?abbreviated.format(valu
 export const pct=(value?:number|null)=>finite(value)?`${value>=0?'+':''}${value.toFixed(2)}%`:'—';
 export const yieldPct=(value?:number|null)=>finite(value)?`${(value*100).toFixed(2)}%`:'—';
 export const ratio=(value?:number|null)=>finite(value)?`${value.toFixed(2)}×`:'—';
+const fixed=new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+/** Signed price change with two decimals, e.g. +1.80 or -235.38. */
+export const signed=(value?:number|null)=>finite(value)?`${value>=0?'+':'-'}${fixed.format(Math.abs(value))}`:'—';
