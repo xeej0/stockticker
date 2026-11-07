@@ -5,13 +5,14 @@ export async function GET(req:Request) {
  const url = new URL(req.url), symbol = (url.searchParams.get('symbol')||'').toUpperCase(), range=url.searchParams.get('range')||'1d';
  if(!/^[A-Z0-9^=._-]{1,24}$/.test(symbol)||!isChartRange(range)) return Response.json({error:'Invalid ticker or range.'},{status:400});
  try{const data=await cache.get(`${symbol}:${range}`,async()=>{
+ let missing=0;
  for(const host of ['query2','query1']) {
  try {
  // Yahoo does not support every requested year count as a named range.
  const params=new URLSearchParams({interval:INTERVALS[range]});
  if(['3y','10y'].includes(range)){const end=new Date(),start=new Date(end);start.setUTCFullYear(start.getUTCFullYear()-Number.parseInt(range,10));params.set('period1',String(Math.floor(start.getTime()/1000)));params.set('period2',String(Math.floor(end.getTime()/1000)))}else{params.set('range',range)}
  const res=await fetch(`https://${host}.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?${params}`,{headers:{'User-Agent':'Mozilla/5.0','Accept':'application/json'},signal:AbortSignal.timeout(10000)});
- if(!res.ok) { console.warn('Quote source returned',host,res.status); continue; }
+ if(!res.ok) { if(res.status===404)missing++; console.warn('Quote source returned',host,res.status); continue; }
  const body:any=await res.json(), result=body.chart?.result?.[0];
  if(!result) continue;
  let m=result.meta;
@@ -29,6 +30,7 @@ export async function GET(req:Request) {
  return data;
  } catch (e) { console.warn('Quote fetch failed',host,e instanceof Error?e.message:'network error'); }
  }
- throw Error('Chart unavailable.');
- });return Response.json(data,{headers:{'Cache-Control':'public, max-age=30'}})}catch{return Response.json({error:'Market data is temporarily unavailable. Try refreshing shortly.'},{status:503})}
+ // Both hosts say the symbol does not exist: that is the user's answer, not an outage.
+ throw Error(missing===2?'missing':'Chart unavailable.');
+ });return Response.json(data,{headers:{'Cache-Control':'public, max-age=30'}})}catch(e){if(e instanceof Error&&e.message==='missing')return Response.json({error:`No market data found for ${symbol}. Check the ticker and exchange suffix.`},{status:404});return Response.json({error:'Market data is temporarily unavailable. Try refreshing shortly.'},{status:503})}
 }
