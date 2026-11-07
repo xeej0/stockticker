@@ -41,3 +41,85 @@ th[aria-sort] button{color:var(--text)}
 .not-found{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center}.not-found h1{font-size:28px}.not-found p{color:var(--muted);margin:0 0 8px}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- Readability pass: nothing below 11px, clearer hierarchy ---------- */
+.eyebrow,.market-movers-heading .eyebrow{font-size:11px;letter-spacing:1.4px}
+.data-status,.saved,.count{font-size:11px}
+.index-name{font-size:12px}.index-bottom span:not(.spark-placeholder){font-size:12px;font-weight:550}
+.subtle-button,.primary-button{font-size:12.5px}
+.filter-tabs button{font-size:12.5px}
+thead,th button{font-size:10.5px}
+.company strong{font-size:13.5px}.company small{font-size:11.5px;margin-top:3px}
+.numeric{font-size:13.5px}.change-pill{font-size:12px;padding:5px 7px;min-width:66px;font-weight:550}
+.watch-footer{font-size:11.5px}
+.detail-company h2{font-size:18px}.detail-company>div>span{font-size:12px}
+.detail-change{font-size:14px}.day-label{font-size:12px}
+.quote-time{font-size:11.5px}
+.range-tabs button{font-size:11.5px;padding:6px 10px}
+.compare-button{font-size:12px;padding:6px 9px}
+.chart-caption{font-size:11.5px}.chart-caption small{font-size:11px}
+.stats-grid>div{font-size:13px}.stats-grid span{font-size:12px}.stats-grid strong{font-size:13px}
+.detail-footer{font-size:11.5px}
+.footer,.footer button{font-size:11.5px}
+.chart-tooltip{font-size:12.5px}.chart-tooltip span{font-size:11.5px}.chart-tooltip em{font-size:11.5px}
+.search-label{font-size:11px}.search-label span{font-size:11.5px}.exchange{font-size:11px}.modal-footer{font-size:11.5px}
+.search-result strong{font-size:13.5px}.search-result small{font-size:12px}
+.market-movers-heading>span{font-size:11.5px}
+.market-list h3{font-size:14.5px}.market-list-heading p{font-size:11.5px}
+.market-rank{font-size:11.5px;width:14px}
+.market-symbol strong,.market-numbers strong{font-size:13.5px}
+.market-symbol small,.market-numbers small{font-size:11.5px}
+.market-list-footer{font-size:11px}.market-movers-note{font-size:11px}
+.stale{font-size:10.5px}
+/* Stock page */
+.stock-meta{font-size:12.5px}
+.stock-hero-price>span{font-size:15px}.stock-hero-price>small{font-size:12px}
+.stock-chart-panel .range-tabs button{font-size:12px}
+.moving-average-controls button{font-size:12px;padding:7px 10px}
+.moving-average-controls i{width:7px;height:7px}
+.stock-overlay-legend{font-size:12px}
+.stock-market-summary>div>span{font-size:12px}.stock-market-summary strong{font-size:14px}
+.simple-metrics-heading h2{font-size:16px}.simple-metrics-heading>span{font-size:11.5px}
+.simple-metrics dt{font-size:12.5px}.simple-metrics dd{font-size:20px}
+
+@media(max-width:640px){
+ .range-tabs button{font-size:11px;padding:7px 7px}
+ .stock-chart-panel .range-tabs button{font-size:11px;padding:7px 7px}
+ .stats-grid{grid-template-columns:1fr}.stats-grid>div:nth-child(odd){border-right:0;padding-right:0}.stats-grid>div:nth-child(even){padding-left:0}
+ .company small{max-width:120px}.change-pill{min-width:60px;font-size:11.5px}
+ .detail-footer{flex-direction:column;align-items:flex-start;gap:8px}
+ .header .theme{display:inline-flex}
+ .stock-market-summary strong{font-size:13px}
+ .simple-metrics dd{font-size:18px}
+}
+.range-bar{display:flex;flex-direction:column;gap:6px;min-width:130px;flex:1;max-width:220px}
+.range-bar-values{display:flex;justify-content:space-between;gap:8px;font-variant-numeric:tabular-nums}
+.range-bar-track{position:relative;height:4px;border-radius:4px;background:var(--border)}
+.range-bar-fill{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:linear-gradient(90deg,var(--red-soft),var(--green-soft))}
+.range-bar-dot{position:absolute;top:50%;width:10px;height:10px;border-radius:50%;background:var(--text);border:2px solid var(--card);transform:translate(-50%,-50%);box-shadow:0 0 0 1px var(--border)}
+.stats-grid>div{align-items:center}
+.stock-market-summary .range-bar{max-width:260px;margin-top:2px}
+.index-bottom{align-items:flex-end}.spark{display:block;flex-shrink:0;opacity:.95}.spark-empty{width:96px;height:34px}
+@media(max-width:640px){.spark,.spark-empty{width:60px}}
+@keyframes flash-up{from{background:var(--green-soft)}to{background:transparent}}
+@keyframes flash-down{from{background:var(--red-soft)}to{background:transparent}}
+td.flash-up{animation:flash-up 1.4s ease-out}td.flash-down{animation:flash-down 1.4s ease-out}
+@media(max-width:640px){
+ .index-bottom{flex-direction:column;align-items:stretch;gap:8px}
+ .spark,.spark-empty{width:100%;height:24px}
+ .index-bottom strong{font-size:18px}
+ .detail-panel .chart-controls{flex-wrap:wrap;row-gap:10px}
+ .detail-panel .range-tabs{flex-basis:100%;justify-content:space-between}
+ .detail-panel .range-tabs button,.stock-chart-panel .range-tabs button{padding:7px 5px}
+ .stock-chart-panel .range-tabs{justify-content:space-between}
+ .detail-panel .compare-button{margin-left:auto}
+ .watch-panel .stock-badge{width:28px;height:28px;font-size:10px;border-radius:7px}
+ .watch-panel .company{gap:7px}.watch-panel .company small{max-width:92px}
+ .watch-panel td{padding:0 4px}.watch-panel .change-pill{min-width:56px;padding:5px 5px}
+ .watch-panel .numeric{font-size:13px}
+}
+.stats-grid .range-bar span,.stock-market-summary .range-bar,.stock-market-summary .range-bar span{color:inherit;font-size:inherit;margin:0}
+.stock-market-summary>div>.range-bar{display:flex;margin-top:4px}.stock-market-summary .range-bar-values{display:flex}.stock-market-summary .range-bar-track{display:block}
+.range-bar strong{color:var(--text)}
+.range-bar-track{background:color-mix(in srgb,var(--muted) 30%,transparent)}
+.range-bar-fill{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 35%,transparent),color-mix(in srgb,var(--green) 45%,transparent))}
