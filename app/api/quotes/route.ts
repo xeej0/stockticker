@@ -1,0 +1,3 @@
+import {quoteBatch} from '../../../lib/quote-batch';
+import {validSymbol} from '../../../lib/market-types';
+export async function GET(request:Request){const value=new URL(request.url).searchParams.get('symbols')||'';const symbols=[...new Set(value.split(',').map(s=>s.trim().toUpperCase()).filter(Boolean))];if(!symbols.length||symbols.length>104||symbols.some(s=>!validSymbol(s)))return Response.json({error:'Provide 1–104 valid tickers.'},{status:400});try{return Response.json({quotes:await quoteBatch(symbols)},{headers:{'Cache-Control':'public, max-age=30'}})}catch{return Response.json({error:'Quotes are temporarily unavailable.'},{status:503})}}
