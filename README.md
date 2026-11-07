@@ -9,6 +9,8 @@ Live at **https://ticker.xeej.app** (Vercel project `ticker-stock-desk`).
 - Click any row to chart it; arrow keys move through the list; sort any column both ways
 - Ranges from 1D to ALL, S&P 500 comparison, previous-close baseline on intraday charts
 - Chart scrubbing by mouse, touch, or keyboard (arrows, Shift+arrows, Home/End)
+- Company logos, intraday sparklines on every watchlist row and index card
+- Price alerts: set a target on any symbol; a toast and optional browser notification fire when it is reached (checked while Ticker is open, synced across tabs)
 - Stock detail pages with 50/200-day moving averages and key metrics for stocks, ETFs, and crypto
 - Market movers: daily winners, losers, and trending symbols
 - Light and dark themes, following your system setting until you choose

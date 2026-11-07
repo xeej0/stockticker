@@ -123,3 +123,37 @@ td.flash-up{animation:flash-up 1.4s ease-out}td.flash-down{animation:flash-down 
 .range-bar strong{color:var(--text)}
 .range-bar-track{background:color-mix(in srgb,var(--muted) 30%,transparent)}
 .range-bar-fill{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 35%,transparent),color-mix(in srgb,var(--green) 45%,transparent))}
+
+/* ---------- Logos, row sparklines, alerts ---------- */
+.stock-logo{background:#fff;border:1px solid var(--border);overflow:hidden;padding:3px}
+.stock-logo img{width:100%;height:100%;object-fit:contain;display:block;border-radius:4px}
+[data-theme=dark] .stock-logo{background:#f3f5f4;border-color:transparent}
+.spark-cell{width:76px;padding:0 4px!important}.row-spark{display:block;width:72px;height:28px}.row-spark.spark-empty{display:block}
+th.spark-col{width:76px}
+.alert-dot{display:inline-flex;color:#b7862c;margin-left:5px;vertical-align:-1px}
+.company strong{display:flex!important;align-items:center}
+.detail-heading{position:relative}.detail-actions{position:relative}
+.alert-toggle{position:relative}.alert-toggle.has-alerts{color:#b7862c}
+.alert-count{position:absolute;top:1px;right:0;min-width:14px;height:14px;border-radius:7px;background:#b7862c;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 3px}
+.alert-panel{position:absolute;right:0;top:calc(100% + 8px);z-index:6;width:320px;max-width:calc(100vw - 40px);background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px;text-align:left;animation:pop .14s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.alert-panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.alert-panel-head strong{display:flex;gap:7px;align-items:center;font-size:14px}
+.alert-panel label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:7px}
+.alert-input{display:flex;gap:8px}.alert-input input{flex:1;min-width:0;border:1px solid var(--border);border-radius:7px;background:var(--bg);color:var(--text);padding:9px 11px;font-size:15px;font-variant-numeric:tabular-nums;outline:none}.alert-input input:focus{border-color:#7fb393}
+.alert-input .primary-button{white-space:nowrap}.alert-input .primary-button:disabled{cursor:not-allowed;opacity:.5}
+.alert-hint{margin:7px 0 0;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.alert-list{list-style:none;margin:12px 0 0;padding:10px 0 0;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:2px}
+.alert-list li{display:flex;align-items:center;justify-content:space-between;font-size:13px;min-height:30px}.alert-list li>span{display:flex;align-items:center;gap:7px}.alert-list li>span svg{color:#b7862c}
+.alert-list li.triggered>span svg{color:var(--green)}.alert-list li.triggered{color:var(--muted)}.alert-list small{font-size:11px;margin-left:4px}
+.alert-list b{font-weight:600;color:var(--text);font-variant-numeric:tabular-nums}
+.alert-clear button{font-size:12px;color:var(--green);padding:4px 0}
+.alert-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;font-size:11.5px;color:var(--muted)}.alert-foot button{color:var(--green);font-size:11.5px;padding:0}.alert-foot span{display:flex;align-items:center;gap:4px}
+.toast.alert-toast>svg{color:#b7862c}
+.stock-header-actions{position:relative}
+@media(min-width:961px) and (max-width:1199px){.spark-cell,th.spark-col{display:none}}@media(max-width:640px){.spark-cell,th.spark-col{display:none}}
+@media(max-width:640px){.alert-panel{position:fixed;left:12px;right:12px;top:auto;bottom:12px;width:auto;max-width:none}}
+.stock-title{display:flex;align-items:center;gap:14px}.stock-title .stock-badge{border-radius:11px;font-size:14px}
+.market-list-select .stock-badge{border-radius:7px;font-size:10px}
+.toast.alert-toast button{font-size:16px;line-height:1}
+@media(max-width:640px){.stock-title{gap:10px}.stock-title .stock-badge{width:36px!important;height:36px!important}}
+.watch-panel thead th:nth-child(3){padding-right:12px}.watch-panel thead th:nth-child(4){padding-right:6px}
