@@ -182,3 +182,4 @@ th.spark-col{width:76px}
 .header-inner>.account,.header-inner>.sign-in-button{margin-left:4px}
 @media(max-width:640px){.sign-in-button span{display:none}.sign-in-button{padding:7px;border:0}.avatar{width:30px;height:30px;font-size:13px}.account-menu{position:fixed;left:12px;right:12px;top:62px;width:auto}.auth-dialog{padding:20px 16px}}
 .toast.toast-error>svg{color:var(--red)}.toast.toast-info>svg{color:var(--muted)}
+.change-neutral{color:var(--muted)}.change-neutral-bg{color:var(--muted);background:var(--hover)}
