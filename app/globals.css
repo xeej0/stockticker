@@ -159,3 +159,25 @@ th.spark-col{width:76px}
 .watch-panel thead th:nth-child(3){padding-right:12px}.watch-panel thead th:nth-child(4){padding-right:6px}
 .stock-logo{padding:2px}.stock-logo.loading img{opacity:0}
 .stock-logo.on-dark,[data-theme=dark] .stock-logo.on-dark{background:#222c27;border-color:#222c27}
+
+/* ---------- Accounts ---------- */
+.sign-in-button{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:550;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 12px;white-space:nowrap}.sign-in-button:hover{border-color:#9ec9ad}
+.account{position:relative}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}.avatar:hover{color:#fff;filter:brightness(1.08)}
+.avatar.large{width:40px;height:40px;font-size:16px}.avatar.sync-error{background:var(--red)}
+.avatar-sync{position:absolute;right:-1px;bottom:-1px;width:10px;height:10px;border-radius:50%;background:#e0b04a;border:2px solid var(--card)}
+.account-menu{position:absolute;right:0;top:calc(100% + 10px);z-index:12;width:280px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:8px;animation:pop .14s ease-out}
+.account-head{display:flex;gap:11px;align-items:center;padding:8px 8px 10px}.account-head strong{display:block;font-size:14px}.account-head small{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:12px;margin-top:3px}
+.account-menu p{margin:0 8px 8px;padding-top:9px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;line-height:1.5}
+.account-menu button[role=menuitem]{display:flex;align-items:center;gap:9px;width:100%;padding:9px 8px;border-radius:7px;font-size:13px;text-align:left}.account-menu button[role=menuitem]:hover{background:var(--hover)}
+.account-menu .danger,.account-menu .danger:hover{color:var(--red)}
+.auth-dialog{width:420px;max-width:100%;background:var(--card);border:1px solid var(--border);border-radius:15px;box-shadow:0 22px 80px #10281833;padding:24px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:3px;margin-bottom:18px}.auth-tabs button{padding:8px;border-radius:7px;font-size:13px;color:var(--muted);font-weight:550}.auth-tabs .active{background:var(--card);color:var(--text);box-shadow:0 1px 3px #0001}
+.field{display:block;margin-bottom:14px}.field>span:first-child{display:block;font-size:12.5px;font-weight:550;margin-bottom:6px}
+.field input{width:100%;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);padding:11px 12px;font-size:15px;outline:none}.field input:focus{border-color:#7fb393;box-shadow:0 0 0 3px var(--green-soft)}
+.password{position:relative;display:block}.password input{padding-right:42px}.password .icon-button{position:absolute;right:5px;top:50%;transform:translateY(-50%)}
+.auth-note{font-size:12px;color:var(--muted);line-height:1.5;margin:-4px 0 14px}
+.auth-error{font-size:12.5px;color:var(--red);background:var(--red-soft);border-radius:7px;padding:9px 11px;margin:0 0 14px}
+.auth-submit{width:100%;padding:12px;font-size:14px}.auth-submit.danger{background:var(--red)}.auth-submit.danger:hover{background:#b44a43}
+.header-inner>.account,.header-inner>.sign-in-button{margin-left:4px}
+@media(max-width:640px){.sign-in-button span{display:none}.sign-in-button{padding:7px;border:0}.avatar{width:30px;height:30px;font-size:13px}.account-menu{position:fixed;left:12px;right:12px;top:62px;width:auto}.auth-dialog{padding:20px 16px}}

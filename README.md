@@ -13,6 +13,7 @@ Live at **https://ticker.xeej.app** (Vercel project `ticker-stock-desk`).
 - Price alerts: set a target on any symbol; a toast and optional browser notification fire when it is reached (checked while Ticker is open, synced across tabs)
 - Stock detail pages with 50/200-day moving averages and key metrics for stocks, ETFs, and crypto
 - Market movers: daily winners, losers, and trending symbols
+- Optional account (username + password, no email) to sync your watchlist and alerts across devices
 - Light and dark themes, following your system setting until you choose
 
 ## Development
@@ -36,3 +37,10 @@ Requires Node 22.13+.
 - `lib/`: formatting, indicators, caching, and shared types
 
 Market data comes from Yahoo Finance and may be delayed.
+
+## Accounts
+
+Optional. Without one, everything stays in the browser. Accounts need `DATABASE_URL`
+(set automatically by the Vercel Neon integration; locally, any Postgres). Tables are
+created on first use. Passwords are salted scrypt hashes; sessions are random tokens
+stored as SHA-256 in an HttpOnly cookie; sign-in, sign-up and delete are rate limited.
