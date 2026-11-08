@@ -22,7 +22,7 @@ async function fetchLogo(symbol:string):Promise<Entry|'retry'>{
  }catch{return 'retry'}
 }
 export async function GET(_request:Request,{params}:{params:Promise<{symbol:string}>}){
- const symbol=decodeURIComponent((await params).symbol).toUpperCase();
+ let symbol='';try{symbol=decodeURIComponent((await params).symbol).toUpperCase()}catch{/* Malformed escape: rejected below. */}
  if(!validSymbol(symbol))return new Response(null,{status:400});
  let entry=memory.get(symbol);
  if(entry===undefined){const fetched=await fetchLogo(symbol);if(fetched==='retry')return new Response(null,{status:503,headers:{'Cache-Control':'no-store'}});entry=fetched;memory.set(symbol,entry);while(memory.size>LIMIT)memory.delete(memory.keys().next().value!)}

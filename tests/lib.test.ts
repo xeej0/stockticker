@@ -24,6 +24,7 @@ test('formatters handle signs and missing values',()=>{
   assert.equal(signed(undefined),'—');
   assert.equal(pct(0.5),'+0.50%');
   assert.equal(money(342.37),'$342.37');
+  assert.equal(money(116.5,'GBp'),'116.50 GBp');
   assert.equal(compact(4_980_000_000_000),'4.98T');
 });
 test('chart ranges validate and compute cutoffs',()=>{
