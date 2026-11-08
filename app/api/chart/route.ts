@@ -30,6 +30,7 @@ export async function GET(req:Request) {
  return data;
  } catch (e) { console.warn('Quote fetch failed',host,e instanceof Error?e.message:'network error'); }
  }
- throw Error(missing===2?'Not found.':'Chart unavailable.');
- });return Response.json(data,{headers:{'Cache-Control':'public, max-age=30'}})}catch(e){if(e instanceof Error&&e.message==='Not found.')return Response.json({error:`No market data found for ${symbol}. Check the ticker and any exchange suffix.`},{status:404});return Response.json({error:'Market data is temporarily unavailable. Try refreshing shortly.'},{status:503})}
+ // Both hosts say the symbol does not exist: that is the user's answer, not an outage.
+ throw Error(missing===2?'missing':'Chart unavailable.');
+ });return Response.json(data,{headers:{'Cache-Control':'public, max-age=30'}})}catch(e){if(e instanceof Error&&e.message==='missing')return Response.json({error:`No market data found for ${symbol}. Check the ticker and exchange suffix.`},{status:404});return Response.json({error:'Market data is temporarily unavailable. Try refreshing shortly.'},{status:503})}
 }
